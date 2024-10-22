@@ -1,9 +1,9 @@
 [package]
-name = "vmod_reqwest"
-version = "0.0.12"
+name = "vmod_cloudbucket"
+version = "0.0.1"
 edition = "2021"
 license = "BSD-3-Clause"
-authors = [ "Guillaume Quintard guillaume.quintard@gmail.com" ]
+authors = [ "James Ho" ]
 
 [build-dependencies]
 varnish = "0.0.19"
@@ -11,16 +11,19 @@ varnish = "0.0.19"
 [dependencies]
 varnish = "0.0.19"
 varnish-sys = "0.0.19"
-regex = "1.5"
-lru = "0.7.1"
-bytes = "1.1.0"
-reqwest = { version = "0.11", features = ["stream", "deflate", "gzip", "brotli", "native-tls"] }
+regex = "1.11"
+lru = "0.12"
+bytes = "1.8"
+reqwest = { version = "0.12", features = ["stream", "deflate", "gzip", "brotli", "native-tls"] }
 tokio = { version = "1", features = ["full"] }
 futures = "0.3"
 futures-util = "0.3"
-hyper = "0.14.16"
+hyper = { version = "1.5.0", features = ["full"] }
+http-body-util = "0.1"
 anyhow = "1.0"
 serde_json = "1"
+aws-config = "1.5"
+aws-sdk-s3 = "1.56"
 
 [lib]
 crate-type = ["cdylib"]

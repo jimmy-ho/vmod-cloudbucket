@@ -11,13 +11,13 @@ server s2 {
 } -start
 
 varnish v1 -vcl {
-	import reqwest from "${vmod}";
+	import cloudbucket from "${vmod}";
 
 	backend be none;
 
 	sub vcl_init {
-		new client1 = reqwest.client();
-		new client2 = reqwest.client();
+		new client1 = cloudbucket.client();
+		new client2 = cloudbucket.client();
 	}
 
 	sub vcl_recv {

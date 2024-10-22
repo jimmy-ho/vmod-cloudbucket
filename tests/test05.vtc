@@ -20,13 +20,13 @@ server s1 {
 } -start
 
 varnish v1 -vcl {
-	import reqwest from "${vmod}";
+	import cloudbucket from "${vmod}";
 
 	backend be none;
 
 	sub vcl_init {
-		new follow = reqwest.client();
-		new nofollow = reqwest.client(follow = 0);
+		new follow = cloudbucket.client();
+		new nofollow = cloudbucket.client(follow = 0);
 	}
 
 	sub vcl_recv {

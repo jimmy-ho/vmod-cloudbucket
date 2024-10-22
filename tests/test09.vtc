@@ -14,7 +14,7 @@ server s1 {
 
 # VCL, no backend needed
 varnish v1 -arg "-p debug=+syncvsl" -vcl {
-	import reqwest from "${vmod}";
+	import cloudbucket from "${vmod}";
 
 	probe p1 {
 		.url = "/probe";
@@ -27,8 +27,8 @@ varnish v1 -arg "-p debug=+syncvsl" -vcl {
 	backend s1 none;
 
 	sub vcl_init {
-		new client = reqwest.client(base_url = "http://${s1_addr}:${s1_port}", probe = p1);
-		new client2 = reqwest.client(base_url = "http://${s1_addr}:${s1_port}");
+		new client = cloudbucket.client(base_url = "http://${s1_addr}:${s1_port}", probe = p1);
+		new client2 = cloudbucket.client(base_url = "http://${s1_addr}:${s1_port}");
 	}
 } -start
 

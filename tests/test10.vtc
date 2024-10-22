@@ -28,7 +28,7 @@ server s2 {
 
 # VCL, no backend needed
 varnish v1 -arg "-p debug=+syncvsl" -vcl {
-	import reqwest from "${vmod}";
+	import cloudbucket from "${vmod}";
 
 	# because .url is a full URL, p1 is tied to s2
 	probe p1 {
@@ -42,7 +42,7 @@ varnish v1 -arg "-p debug=+syncvsl" -vcl {
 	backend s1 none;
 
 	sub vcl_init {
-		new client = reqwest.client(probe = p1);
+		new client = cloudbucket.client(probe = p1);
 	}
 
 	sub vcl_recv {

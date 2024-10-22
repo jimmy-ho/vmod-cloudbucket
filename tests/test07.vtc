@@ -13,13 +13,13 @@ server s1 {
 
 # VCL, no backend needed
 varnish v1 -vcl {
-	import reqwest from "${vmod}";
+	import cloudbucket from "${vmod}";
 	import std;
 
 	backend s1 none;
 
 	sub vcl_init {
-		new client = reqwest.client();
+		new client = cloudbucket.client();
 	}
 
 	sub vcl_backend_fetch {
