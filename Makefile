@@ -18,7 +18,7 @@ run:
 		-v ./example/default.vcl:/etc/varnish/default.vcl:ro \
 		--tmpfs /var/lib/varnish/varnishd:exec \
 		-p 8787:80 \
-		vmod-cloudbucket-varnish:0.0.1
+		vmod-cloudbucket-varnish:0.0.1 varnishd -F -f /etc/varnish/default.vcl -s malloc,256m -p vsl_reclen=4084
 
 .PHONY: lint
 lint:
